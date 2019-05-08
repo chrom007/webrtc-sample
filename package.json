@@ -1,0 +1,20 @@
+{
+  "name": "webrtc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "server": "nodemon server.js",
+    "build": "browserify public/index.js > public/build.js",
+    "live": "watchify public/index.js -o public/build.js -v"
+  },
+  "author": "CHROM",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4"
+  },
+  "devDependencies": {
+    "browserify": "^16.2.3",
+    "watchify": "^3.11.1"
+  }
+}
