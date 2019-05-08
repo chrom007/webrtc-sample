@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "server": "nodemon server.js",
+    "server": "nodemon server.js --ignore ./public",
     "build": "browserify public/index.js > public/build.js",
     "live": "watchify public/index.js -o public/build.js -v"
   },
@@ -12,7 +12,8 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.16.4",
-    "simple-peer": "^9.3.0"
+    "simple-peer": "^9.3.0",
+    "socket.io": "^2.2.0"
   },
   "devDependencies": {
     "browserify": "^16.2.3",

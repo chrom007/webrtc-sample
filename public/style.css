@@ -15,6 +15,10 @@ input, textarea, select, button {
 	outline: none;
 }
 
+.hide {
+	display: none;
+}
+
 .page {
 	margin: auto;
 	margin-top: 100px;
@@ -52,4 +56,13 @@ input, textarea, select, button {
 }
 .btn.receive {
 	background-color: #2ecc71;
+}
+
+video {
+	border: 1px solid rgba(0,0,0,0.1);
+	padding: 10px;
+	background-color: white;
+	width: 100%;
+	box-sizing: border-box;
+	margin-bottom: 10px;
 }

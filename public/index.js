@@ -1,37 +1,30 @@
-const Peer = require("simple-peer");
+const Socket = require("./app/Socket");
+const Peer = require("./app/Peer");
+const out = require("./app/Logger");
+const $ = require("./libs/jquery");
 
+var socket = null;
 var peer = null;
 var stream = null;
 
+
+navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then(s => {stream = s;}).catch(e => {out(e)});
+
+
 $(".call").click(function(){
-	initPeer();
+	Peer.init(true, stream, token => {
+		socket.emit("call", JSON.stringify(token));
+		$(".call").addClass("hide");
+	});
+});
+
+$(".receive").click(function(){
+	Peer.init(false, stream, token => {
+		socket.emit("receive", JSON.stringify(token));
+	});
+
+	Peer.receive();
 });
 
 
-
-function initPeer() {
-	peer = new Peer({
-		initiator: true,
-		trickle: false
-	});
-
-	peer.on("signal", data => {
-		out(data);
-	});
-}
-
-
-function out(text) {
-	if (typeof text == "object") text = JSON.stringify(text, true);
-	var update = $(".output").val();
-		update += text;
-		update += "\n\n";
-
-	$(".output").val(update);
-}
-
-
-
-
-
-navigator.getUserMedia({ video: true, audio: true }, s => {stream = s}, e => {out(e)});
+socket = Socket.init();
